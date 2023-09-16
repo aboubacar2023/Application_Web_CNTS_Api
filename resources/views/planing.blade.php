@@ -41,21 +41,22 @@
                 <div class="row">
                     @foreach($dates as $date)
                     <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 1-->
+                        <!-- Portfolio item -->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{ $date->id }}">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
                                 <div class="portfolio-caption">
                                     <div class="portfolio-caption-heading"><li class="list-inline">Date : {{ $date->daterdv->format('d-m-Y') }}</li></div>
-                                    <div class="portfolio-caption-subheading text-muted">nombre total : {{ $nombreDonneursParDate->where('id', $date->id)->first()->donneurs_count }}</div>
+                                    <div class="portfolio-caption-subheading text-muted">Nombre total de donneurs : {{ $nombreDonneursParDate->where('id', $date->id)->first()->donneurs_count }}</div>
                                 </div>
                             </a>
-                            
                         </div>
                     </div>
-                    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+                
+                    <!-- Portfolio modal -->
+                    <div class="portfolio-modal modal fade" id="portfolioModal{{ $date->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="close-modal" data-bs-dismiss="modal"><img src="/design/assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -67,7 +68,7 @@
                                                 <h3 class="text-uppercase">La liste des donneurs</h3>
                                                         <ul class="list-inline">
                                                             @foreach($date->donneur as $donneur)
-                                                                <li>{{ $donneur->nom }} {{ $donneur->prenom }}</li>
+                                                                <li><strong> Nom : </strong>{{ $donneur->nom }}<strong> __ Prénom : </strong> {{ $donneur->prenom }}<strong> __ Groupe Sanguin : </strong> {{$donneur->groupe_sanguin}} <strong> __ Rhésus : </strong>{{$donneur->rhesus}}</li>
                                                             @endforeach
                                                         </ul>
                                                        
